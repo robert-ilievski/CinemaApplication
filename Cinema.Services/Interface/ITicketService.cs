@@ -1,4 +1,5 @@
 ﻿using Cinema.Domain.DomainModels;
+using Cinema.Domain.DTO;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,5 +13,7 @@ namespace Cinema.Services.Interface
         void CreateNewTicket(Ticket t);
         void UpdateExistingTicket(Ticket t);
         void DeleteTicket(Guid id);
+        AddToShoppingCartDto GetShoppingCartInfo(Guid? id);
+        bool AddToShoppingCart(AddToShoppingCartDto item, string userID);
     }
 }
