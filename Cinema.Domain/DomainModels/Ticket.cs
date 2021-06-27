@@ -5,12 +5,23 @@ using System.Text;
 
 namespace Cinema.Domain.DomainModels
 {
+    public enum Genre
+    {
+        Action,
+        Comedy,
+        Drama,
+        Thriller,
+        Documentary,
+        Scifi,
+        Horror,
+        History
+    }
     public class Ticket : BaseEntity
     {
         [Required]
         public string MovieName { get; set; }
         [Required]
-        public string MovieGenre { get; set; }
+        public Genre MovieGenre { get; set; }
         [Required]
         public string MovieYear { get; set; }
         [Required]
@@ -22,6 +33,6 @@ namespace Cinema.Domain.DomainModels
         [Required]
         public DateTime Date { get; set; }
         public virtual ICollection<TicketInShoppingCart> TicketsInShoppingCart { get; set; }
-        public IEnumerable<TicketInOrder> TicketsInOrder { get; set; }
+        public virtual ICollection<TicketInOrder> TicketsInOrder { get; set; }
     }
 }

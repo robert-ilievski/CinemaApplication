@@ -120,11 +120,31 @@ namespace CinemaApplication.Controllers
             return View(model);
         }
 
-
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
+        }
+        public async Task<IActionResult> ChangeUserRole()
+        {
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeUserRole(CinemaApplicationUser user)
+        {
+            var updatedUser = await userManager.FindByIdAsync(user.Id);
+            updatedUser.Role = user.Role;
+            var result = await userManager.UpdateAsync(updatedUser);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(user);
+            }
         }
     }
 }

@@ -19,6 +19,29 @@ namespace Cinema.Repository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Cinema.Domain.DomainModels.EmailMessage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MailTo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmailMessages");
+                });
+
             modelBuilder.Entity("Cinema.Domain.DomainModels.Order", b =>
                 {
                     b.Property<Guid>("Id")
@@ -66,9 +89,8 @@ namespace Cinema.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MovieGenre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("MovieGenre")
+                        .HasColumnType("int");
 
                     b.Property<string>("MovieImage")
                         .IsRequired()
@@ -82,15 +104,10 @@ namespace Cinema.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("TicketPrice")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("Tickets");
                 });
@@ -185,8 +202,8 @@ namespace Cinema.Repository.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -360,17 +377,10 @@ namespace Cinema.Repository.Migrations
                         .HasForeignKey("Cinema.Domain.DomainModels.ShoppingCart", "UserId");
                 });
 
-            modelBuilder.Entity("Cinema.Domain.DomainModels.Ticket", b =>
-                {
-                    b.HasOne("Cinema.Domain.DomainModels.Order", null)
-                        .WithMany("Tickets")
-                        .HasForeignKey("OrderId");
-                });
-
             modelBuilder.Entity("Cinema.Domain.DomainModels.TicketInOrder", b =>
                 {
                     b.HasOne("Cinema.Domain.DomainModels.Order", "UserOrder")
-                        .WithMany()
+                        .WithMany("TicketsInOrder")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

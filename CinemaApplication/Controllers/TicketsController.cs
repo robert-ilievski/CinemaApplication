@@ -1,4 +1,5 @@
 ﻿using Cinema.Domain.DomainModels;
+using Cinema.Domain.DTO;
 using Cinema.Services.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CinemaApplication.Controllers
@@ -136,6 +138,27 @@ namespace CinemaApplication.Controllers
         {
             this._ticketService.DeleteTicket(id);
             return RedirectToAction(nameof(Index));
+        }
+        public IActionResult AddTicketToCart(Guid? id)
+        {
+            var model = this._ticketService.GetShoppingCartInfo(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddTicketToCart([Bind("TicketId", "Quantity")] AddToShoppingCartDto item)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var result = this._ticketService.AddToShoppingCart(item, userId);
+
+            if (result)
+            {
+                return RedirectToAction("Index", "Tickets");
+            }
+
+            return View(item);
         }
 
         private bool TicketExists(Guid id)
