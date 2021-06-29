@@ -57,6 +57,7 @@ namespace CinemaApplication
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
             services.AddTransient<IOrderService, Cinema.Services.Implementation.OrderService>();
             services.AddTransient<ITicketService, Cinema.Services.Implementation.TicketService>();
+            services.AddTransient<IUserService, Cinema.Services.Implementation.UserService>();
 
             //services.AddScoped<EmailSettings>(es => emailService);
             //services.AddScoped<IEmailService, EmailService>(email => new EmailService(emailService));

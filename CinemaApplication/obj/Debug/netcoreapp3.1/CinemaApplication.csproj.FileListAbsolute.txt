@@ -225,3 +225,4 @@ C:\Users\User\Desktop\robert proekti\6 semestar\CinemaApplication\CinemaApplicat
 C:\Users\User\Desktop\robert proekti\6 semestar\CinemaApplication\CinemaApplication\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\User\Desktop\robert proekti\6 semestar\CinemaApplication\CinemaApplication\obj\Debug\netcoreapp3.1\Razor\Views\Orders\Index.cshtml.g.cs
 C:\Users\User\Desktop\robert proekti\6 semestar\CinemaApplication\CinemaApplication\obj\Debug\netcoreapp3.1\Razor\Views\Orders\Details.cshtml.g.cs
+C:\Users\User\Desktop\robert proekti\6 semestar\CinemaApplication\CinemaApplication\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs

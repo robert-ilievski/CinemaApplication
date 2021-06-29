@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="MovieGenre" class="control-label"></label>
-                <input asp-for="MovieGenre" class="form-control" />
+                <select asp-for="MovieGenre" asp-items="Html.GetEnumSelectList<Cinema.Domain.DomainModels.Genre>()" class="form-control"></select>
                 <span asp-validation-for="MovieGenre" class="text-danger"></span>
             </div>
             <div class="form-group">
