@@ -19,9 +19,9 @@ namespace Cinema.Services.Implementation
             return this._orderRepository.GetAllOrders();
         }
 
-        public Order GetOrderDetails(BaseEntity order)
+        public Order GetOrderDetails(Guid orderId)
         {
-            return this._orderRepository.GetOrderDetails(order);
+            return this._orderRepository.GetOrderDetails(orderId);
         }
     }
 }

@@ -23,8 +23,24 @@ namespace CinemaApplication.Controllers
         // GET: TicketsController
         public ActionResult Index()
         {
-            var tickets = this._ticketService.GetAllTickets();
+            var tickets = new TicketDto
+            {
+                Tickets = _ticketService.GetAllTickets(),
+                Date = DateTime.Now
+            };
             return View(tickets);
+        }
+        [HttpPost]
+        public IActionResult Index(TicketDto dto)
+        {
+            var tickets = _ticketService.GetAllTickets()
+                .Where(z => z.StartDate <= dto.Date && z.EndDate >= dto.Date).ToList();
+            var model = new TicketDto
+            {
+                Tickets = tickets,
+                Date = dto.Date
+            };
+            return View(model);
         }
 
         // GET: TicketsController/Details/5
@@ -54,7 +70,7 @@ namespace CinemaApplication.Controllers
         // POST: TicketsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("MovieName,MovieYear,MovieGenre,MovieDescription,MovieImage,TicketPrice,Date")] Ticket ticket)
+        public ActionResult Create([Bind("MovieName,MovieYear,MovieGenre,MovieDescription,MovieImage,TicketPrice,StartDate,EndDate")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +100,7 @@ namespace CinemaApplication.Controllers
         // POST: TicketsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Guid id, [Bind("Id,MovieName,MovieYear,MovieGenre,MovieDescription,MovieImage,TicketPrice,Date")] Ticket ticket)
+        public ActionResult Edit(Guid id, [Bind("Id,MovieName,MovieYear,MovieGenre,MovieDescription,MovieImage,TicketPrice,StartDate,EndDate")] Ticket ticket)
         {
             if (id != ticket.Id)
             {

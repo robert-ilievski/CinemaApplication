@@ -82,7 +82,7 @@ namespace Cinema.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("MovieDescription")
@@ -103,6 +103,9 @@ namespace Cinema.Repository.Migrations
                     b.Property<string>("MovieYear")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("TicketPrice")
                         .HasColumnType("int");
