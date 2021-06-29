@@ -116,7 +116,8 @@ namespace Cinema.Services.Implementation
                     TicketId = z.Ticket.Id,
                     Ticket = z.Ticket,
                     OrderId = order.Id,
-                    UserOrder = order
+                    UserOrder = order,
+                    Quantity = z.Quantity
                 }).ToList();
 
                 StringBuilder sb = new StringBuilder();

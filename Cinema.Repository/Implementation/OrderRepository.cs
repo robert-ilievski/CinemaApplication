@@ -27,13 +27,13 @@ namespace Cinema.Repository.Implementation
                 .ToListAsync().Result;
         }
 
-        public Order GetOrderDetails(BaseEntity model)
+        public Order GetOrderDetails(Guid orderId)
         {
             return entities
                 .Include(z => z.TicketsInOrder)
                 .Include("TicketsInOrder.Ticket")
                 .Include(z => z.User)
-                .SingleOrDefaultAsync(z => z.Id == model.Id).Result;
+                .SingleOrDefaultAsync(z => z.Id == orderId).Result;
         }
     }
 }

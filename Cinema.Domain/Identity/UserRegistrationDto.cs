@@ -16,5 +16,6 @@ namespace Cinema.Domain.Identity
         [Required(ErrorMessage = "Confirm password is required")]
         [Compare("Password", ErrorMessage = "The Password and Confirm Password do not match.")]
         public string ConfirmPassword { get; set; }
+        public Role UserRole;
     }
 }

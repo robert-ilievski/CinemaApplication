@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="MovieGenre" class="control-label"></label>
-                <input asp-for="MovieGenre" class="form-control" />
+                <select asp-for="MovieGenre" asp-items="Html.GetEnumSelectList<Cinema.Domain.DomainModels.Genre>()" class="form-control"></select>
                 <span asp-validation-for="MovieGenre" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -42,10 +42,17 @@
                 <input asp-for="TicketPrice" class="form-control" />
                 <span asp-validation-for="TicketPrice" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input type="date" id="Date" asp-for="Date" class="form-control">
-                <span asp-validation-for="Date" class="text-danger"></span>
+            <div class="row">
+                <div class="col form-group">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input type="date" id="Date" asp-for="StartDate" class="form-control">
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="col form-group">
+                    <label asp-for="EndDate" class="control-label"></label>
+                    <input type="date" id="Date" asp-for="EndDate" class="form-control">
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

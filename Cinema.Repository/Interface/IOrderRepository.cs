@@ -8,6 +8,6 @@ namespace Cinema.Repository.Interface
     public interface IOrderRepository
     {
         List<Order> GetAllOrders();
-        Order GetOrderDetails(BaseEntity model);
+        Order GetOrderDetails(Guid orderId);
     }
 }

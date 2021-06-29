@@ -31,7 +31,9 @@ namespace Cinema.Domain.DomainModels
         [Required]
         public int TicketPrice { get; set; }
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime StartDate { get; set; }
+        [Required]
+        public DateTime EndDate { get; set; }
         public virtual ICollection<TicketInShoppingCart> TicketsInShoppingCart { get; set; }
         public virtual ICollection<TicketInOrder> TicketsInOrder { get; set; }
     }

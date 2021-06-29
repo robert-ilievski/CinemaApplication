@@ -8,6 +8,6 @@ namespace Cinema.Services.Interface
     public interface IOrderService
     {
         List<Order> GetAllOrders();
-        Order GetOrderDetails(BaseEntity order);
+        Order GetOrderDetails(Guid orderId);
     }
 }
