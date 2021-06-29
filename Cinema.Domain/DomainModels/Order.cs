@@ -7,7 +7,8 @@ namespace Cinema.Domain.DomainModels
 {
     public class Order : BaseEntity
     {
+        public string UserId { get; set; }
         public CinemaApplicationUser User { get; set; }
-        public ICollection<Ticket> Tickets { get; set; }
+        public IEnumerable<TicketInOrder> TicketsInOrder { get; set; }
     }
 }

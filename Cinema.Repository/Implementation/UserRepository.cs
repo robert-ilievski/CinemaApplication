@@ -28,7 +28,8 @@ namespace Cinema.Repository.Implementation
         {
             return entities
                .Include(z => z.ShoppingCart)
-               .Include("ShoppingCart.Tickets")
+               .Include("ShoppingCart.TicketsInShoppingCart")
+               .Include("ShoppingCart.TicketsInShoppingCart.Ticket")
                .SingleOrDefault(s => s.Id == id);
         }
         public void Insert(CinemaApplicationUser entity)
